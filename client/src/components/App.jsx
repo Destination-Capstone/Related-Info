@@ -1,3 +1,9 @@
+/* eslint-disable consistent-return */
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-console */
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable radix */
+/* eslint-disable guard-for-in */
 /* eslint-disable import/extensions */
 import React, { useState, useEffect } from 'react';
 import Box from '@material-ui/core/Box';
@@ -51,8 +57,8 @@ const App = () => {
   };
 
   const getHomeData = () => {
-    city &&
-    axios.get(`http://localhost:3000/homes/${city}`)
+    city
+    && axios.get(`http://localhost:3000/homes/${city}`)
       .then((response) => setHomeInfo(response.data))
       .then(() => getActivityData())
       .then(() => getCities())
