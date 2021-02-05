@@ -14,7 +14,7 @@ module.exports.City = {
 
 module.exports.Home = {
   find: (city) => {
-    const text = 'SELECT * FROM homes WHERE ';
+    const text = `SELECT * FROM homes WHERE `;
     return (
       pool.query(text)
         .then((res) => res.rows)
@@ -22,7 +22,9 @@ module.exports.Home = {
         .finally(() => pool.end())
     );
   },
-  updateOne: (id, liked) => {},
+  updateOne: (id, liked) => {
+    const text = `UPDATE homes`
+  },
 };
 
 module.exports.Activity = {

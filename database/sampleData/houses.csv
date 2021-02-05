@@ -1,0 +1,26 @@
+home_id,city_id,reservation_type_id,house_description,price,beds,review_count,liked,superhost
+1,23,0,Doloremque eveniet saepe.,827.00,4,4382,false,false
+2,24,2,Exercitationem et sit et animi sint ut.,972.00,4,678,false,false
+3,19,2,Ad facilis quasi officiis dolorum consequatur voluptates.,978.00,2,8419,false,false
+4,16,3,In sequi quos placeat quo animi.,119.00,1,185,false,false
+5,14,1,Eum eum neque.,773.00,0,7545,false,false
+6,16,1,Ex officia aliquid aut illum temporibus eligendi iusto.,528.00,4,1719,false,false
+7,4,3,Corporis quaerat omnis doloribus velit aut molestias unde ducimus rerum.,178.00,3,4198,false,false
+8,20,2,Eos saepe velit sit aut ducimus rerum dolor provident quo.,238.00,4,7735,false,false
+9,15,3,Occaecati ducimus necessitatibus distinctio id aliquam est.,358.00,3,2318,false,false
+10,4,2,Iusto iure non ut et.,811.00,3,9640,false,false
+11,6,3,Voluptatibus excepturi sunt natus quia aliquid eos.,624.00,3,1192,false,false
+12,12,1,Sit ipsum dolores possimus debitis.,201.00,3,6422,false,false
+13,18,2,Et eveniet tempore enim non nulla est.,277.00,4,6399,false,false
+14,21,0,Aliquam minima quia voluptas dolor voluptatem ut dolores.,818.00,3,7521,false,false
+15,18,2,Delectus accusamus est perspiciatis rerum ratione cumque quidem impedit.,676.00,4,5810,false,false
+16,10,0,Est tenetur quis est.,942.00,3,5309,false,false
+17,7,3,Similique ex hic accusamus est ea sed.,638.00,4,7900,false,false
+18,17,3,Sint rerum autem qui rerum et suscipit et ut.,588.00,3,618,false,false
+19,22,2,Accusamus repellendus doloremque dolore voluptatem quam.,85.00,1,516,false,false
+20,0,3,Fuga quam soluta veniam.,506.00,0,4588,false,false
+21,1,0,Consectetur aperiam impedit tempore assumenda voluptatem quia soluta qui.,937.00,4,6003,false,false
+22,20,3,Itaque dolores id est exercitationem.,206.00,4,2904,false,false
+23,11,0,Non aspernatur accusantium ut iste mollitia ex assumenda.,408.00,1,5778,false,false
+24,0,0,In eum recusandae molestiae.,928.00,1,2496,false,false
+25,20,3,Architecto ipsum repellendus rem dignissimos voluptatum quia esse accusantium at.,829.00,1,7185,false,false
