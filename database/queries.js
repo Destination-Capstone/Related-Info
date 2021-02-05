@@ -17,13 +17,18 @@ module.exports.City = {
 };
 
 module.exports.Home = {
-  find: (city) => {
-    const text = `SELECT * FROM homes WHERE `;
+  find: (homeId, req, res) => {
+    const firstQuery = `SELECT city_id FROM home WHERE home_id = ${homeId}`;
     return (
-      pool.query(text)
-        .then((res) => res.rows)
-        .catch((e) => e.stack)
-        .finally(() => pool.end())
+      pool.query(firstQuery)
+        .then((data) => {
+          const cityId = data.rows[0].city_id;
+          const secondQuery = `SELECT * FROM home WHERE city_id = ${cityId}`;
+          pool.query(secondQuery)
+            .then((finalResponse) => res.send(finalResponse.rows))
+            .finally(() => pool.end());
+        })
+        .catch((e) => res.send(e.stack))
     );
   },
   updateOne: (id, liked) => {

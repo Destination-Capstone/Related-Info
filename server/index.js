@@ -28,9 +28,9 @@ app.get('/cities', (req, res) => {
 
 ////////////////////////////////////////
 
-app.get('/homes/:city', (req, res) => {
-  const { city } = req.params;
-  Home.find(city, req, res);
+app.get('/homes/:homeId', (req, res) => {
+  const { homeId } = req.params;
+  Home.find(homeId, req, res);
 });
 
 ////////////////////////////////////////
