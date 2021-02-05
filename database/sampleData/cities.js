@@ -1,0 +1,1 @@
+module.exports = ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Pheonix', 'Philly', 'San Antonio', 'San Diego', 'Dallad', 'San Jose', 'Austin', 'Jacksonville', 'Fort Worth', 'Colombus', 'Charlotte', 'San Francisco', 'Indianapolis', 'Seattle', 'Dever', 'Washington DC', 'Boston', 'El Paso', 'Nashville', 'Detroit', 'Oklahoma City'];

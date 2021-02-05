@@ -1,14 +1,18 @@
+/* eslint-disable global-require */
 /* eslint-disable arrow-parens */
 /* eslint-disable spaced-comment */
 /* eslint-disable no-underscore-dangle */
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
 
-const { City, Home, Activity } = require('../database/index.js');
+const { City, Home, Activity } = require('../database/queries.js');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(express.static(path.join(__dirname, '..', 'dist')));
 app.use(express.json());
