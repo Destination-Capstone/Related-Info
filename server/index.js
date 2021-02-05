@@ -22,18 +22,15 @@ app.use(cors());
 ////////////////////////////////////////
 
 app.get('/cities', (req, res) => {
-  City.find({})
-    .then(data => res.send(data))
-    .catch(err => res.send(err));
+  console.log('GET request');
+  City.find(req, res);
 });
 
 ////////////////////////////////////////
 
 app.get('/homes/:city', (req, res) => {
   const { city } = req.params;
-  Home.find({ city })
-    .then((data) => res.send(data))
-    .catch((err) => res.send(err));
+  Home.find(city, req, res);
 });
 
 ////////////////////////////////////////

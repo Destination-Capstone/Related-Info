@@ -1,12 +1,16 @@
 const { pool } = require('./index.js');
 
 module.exports.City = {
-  find: () => {
-    const text = 'SELECT * FROM cities;';
+  find: (req, res) => {
+    const text = 'SELECT * FROM city;';
     return (
-      pool.query(text)
-        .then((res) => res.rows)
-        .catch((e) => e.stack)
+      pool
+        .query(text)
+        .then((data) => {
+          console.log(data.rows);
+          return res.send(data.rows);
+        })
+        .catch((e) => res.send(e.stack))
         .finally(() => pool.end())
     );
   },
