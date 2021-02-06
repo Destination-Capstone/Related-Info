@@ -8,7 +8,7 @@ const query = (text, req, res) => {
       .query(text)
       .then((data) => res.send(data.rows))
       .catch((e) => res.send(e.stack))
-      .finally(() => pool.end())
+
   );
 };
 
