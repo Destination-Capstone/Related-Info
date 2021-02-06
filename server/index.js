@@ -37,9 +37,7 @@ app.get('/homes/:homeId', (req, res) => {
 
 app.get('/activities/:city', (req, res) => {
   const { city } = req.params;
-  Activity.find({ city })
-    .then((data) => res.send(data))
-    .catch((err) => res.send(err));
+  Activity.find({ city }, req, res);
 });
 
 ////////////////////////////////////////
@@ -47,9 +45,7 @@ app.get('/activities/:city', (req, res) => {
 app.patch('/homes/:id', (req, res) => {
   const { liked } = req.body;
   const _id = req.params.id;
-  Home.updateOne({ _id }, { liked })
-    .then((data) => res.send(data))
-    .catch((err) => res.send(err));
+  Home.updateOne({ _id }, { liked }, req, res);
 });
 
 ////////////////////////////////////////
@@ -57,9 +53,7 @@ app.patch('/homes/:id', (req, res) => {
 app.patch('/activities/:id', (req, res) => {
   const { liked } = req.body;
   const _id = req.params.id;
-  Activity.updateOne({ _id }, { liked })
-    .then((data) => res.send(data))
-    .catch((err) => res.send(err));
+  Activity.updateOne({ _id }, { liked }, req, res);
 });
 
 ////////////////////////////////////////

@@ -1,42 +1,62 @@
+/* eslint-disable no-underscore-dangle */
 const { pool } = require('./index.js');
+
+const query = (text, req, res) => {
+  pool.connect();
+  return (
+    pool
+      .query(text)
+      .then((data) => res.send(data.rows))
+      .catch((e) => res.send(e.stack))
+      .finally(() => pool.end())
+  );
+};
 
 module.exports.City = {
   find: (req, res) => {
     const text = 'SELECT * FROM city;';
-    return (
-      pool
-        .query(text)
-        .then((data) => {
-          console.log(data.rows);
-          return res.send(data.rows);
-        })
-        .catch((e) => res.send(e.stack))
-        .finally(() => pool.end())
-    );
+    query(text, req, res);
   },
 };
 
 module.exports.Home = {
   find: (homeId, req, res) => {
-    const firstQuery = `SELECT city_id FROM home WHERE home_id = ${homeId}`;
-    return (
-      pool.query(firstQuery)
-        .then((data) => {
-          const cityId = data.rows[0].city_id;
-          const secondQuery = `SELECT * FROM home WHERE city_id = ${cityId}`;
-          pool.query(secondQuery)
-            .then((finalResponse) => res.send(finalResponse.rows))
-            .finally(() => pool.end());
-        })
-        .catch((e) => res.send(e.stack))
-    );
+    const text = `
+      SELECT * FROM home
+        WHERE city_id = (
+          SELECT (city_id) FROM home
+            WHERE home_id = ${homeId}
+        )
+      `;
+    query(text, req, res);
   },
-  updateOne: (id, liked) => {
-    const text = `UPDATE homes`
+  updateOne: (id, liked, req, res) => {
+    const text = `
+      UPDATE home
+      SET liked = ${liked.liked}
+      WHERE home_id = ${id._id}
+    `;
+    query(text, req, res);
   },
 };
 
 module.exports.Activity = {
-  find: (city) => {},
-  updateOne: (id, liked) => {},
+  find: (city, req, res) => {
+    const text = `
+      SELECT * FROM activity
+        WHERE city_id = (
+          SELECT (city_id) FROM activity
+            WHERE activity_id = ${city.city}
+        )
+      `;
+    query(text, req, res);
+  },
+  updateOne: (id, liked, req, res) => {
+    const text = `
+      UPDATE activity
+      SET liked = ${liked.liked}
+      WHERE activity_id = ${id._id}
+    `;
+    query(text, req, res);
+  },
 };
