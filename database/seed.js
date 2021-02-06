@@ -11,15 +11,15 @@ const writeHouses = fs.createWriteStream('./database/sampleData/houses.csv');
 writeHouses.write('home_id,city_id,reservation_type_id,house_description,price,beds,review_count,liked,superhost');
 
 const seedHouses = (writer, encoding, callback) => {
-  for (let i = 1; i < 26; i++) {
+  for (let i = 1; i < 10000000; i++) {
     const city = Math.floor(Math.random() * 25);
-    const reservation_type_id = Math.floor(Math.random() * ((4 - 1) + 1));
-    const review_count = Math.floor(Math.random() * 10000);
+    const reservation_type_id = Math.floor(Math.random() * ((5 - 1) + 1));
+    const review_count = Math.floor(Math.random() * 30000);
     const beds = Math.floor(Math.random() * ((5 - 1) + 1));
     const data = `\n${i},${city},${reservation_type_id},${faker.lorem.sentence()},${faker.commerce.price()},${beds},${review_count},false,false`;
     let good = true;
     if (good) {
-      if (i !== 24) {
+      if (i !== 1000000 - 1) {
         good = writer.write(data, encoding);
       } else {
         writer.write(data, encoding, callback);
@@ -43,7 +43,7 @@ const seedHouseImages = (writer, encoding, callback) => {
     const data = `\n${i},${home_id},${houseImageURL}${i}.jpg`;
     let good = true;
     if (good) {
-      if (i !== 24) {
+      if (i !== 25) {
         good = writer.write(data, encoding);
       } else {
         writer.write(data, encoding, callback);
@@ -61,11 +61,11 @@ const writeReservationType = fs.createWriteStream('./database/sampleData/reserva
 writeReservationType.write('reservation_type_id,reservation_type');
 
 const seedReservationTypes = (writer, encoding, callback) => {
-  for (let i = 0; i < 4; i++) {
+  for (let i = 1; i < 5; i++) {
     let good = true;
-    const data = `\n${i},${resTypes[i]}`;
+    const data = `\n${i},${resTypes[i - 1]}`;
     if (good) {
-      if (i !== 24) {
+      if (i !== 4) {
         good = writer.write(data, encoding);
       } else {
         writer.write(data, encoding, callback);

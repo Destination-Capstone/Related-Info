@@ -15,8 +15,8 @@ const CityList = ({ cities, setCity }) => {
   return (
     <Box className={classes.cityList}>
       { cities.map(city => (
-        <Button className={classes.cities} key={city._id} onClick={() => setCity(city.name)}>
-          {city.name}
+        <Button className={classes.cities} key={city.city_id} onClick={() => setCity(city.city_id)}>
+          {city.city_name}
         </Button>
       ))}
     </Box>

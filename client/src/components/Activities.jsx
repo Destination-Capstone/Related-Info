@@ -72,7 +72,7 @@ const Activities = ({ activityInfo }) => {
       { activityInfo.map((activity) => (
         <ActivityCard
           activity={activity}
-          key={activity._id}
+          key={activity.activity_id}
         />
       ))}
     </Carousel>

@@ -102,7 +102,7 @@ const Places = ({ homeInfo }) => {
         { homeInfo.map((home) => (
           <HomeCard
             home={home}
-            key={home._id}
+            key={home.home_id}
             handleHomeCardClick={handleHomeCardClick}
           />
         ))}
@@ -120,18 +120,18 @@ const Places = ({ homeInfo }) => {
               <Typography
                 className={classes.relatedInfoDialogTitle}
               >
-                {selected.description}
+                {selected.home_description}
               </Typography>
             </DialogTitle>
             <DialogContent>
-              <Box key={selected._id}>
+              <Box key={selected.home_id}>
                 <Box className={classes.relatedInfoDialogContent}>
                   <StarRateIcon style={{ color: 'red' }} />
                   <Typography style={{ color: 'gray' }}>
-                    {selected.reviews > 0 ? `${selected.reviews} reviews` : 'New'}
+                    {selected.review_count > 0 ? `${selected.review_count} reviews` : 'New'}
                   </Typography>
                   <Typography className={classes.relatedInfoBullet}> • </Typography>
-                  <Typography> {selected.city} </Typography>
+                  <Typography> {selected.city_name} </Typography>
                 </Box>
                 <Box className={classes.relatedInfoDialogMediaBox}>
                   <img

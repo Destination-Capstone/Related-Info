@@ -24,9 +24,11 @@ const useStyles = makeStyles(styles);
 const ActivityCard = ({ activity }) => {
   const placeholderImageURL = generatePhotoPlaceholderURL(200, 200);
   const [liked, setLiked] = useState(false);
+  const [image, setImage] = useState(null);
   const classes = useStyles();
 
   useEffect(() => setLiked(activity.liked), [activity.liked]);
+  useState(() => setImage(placeholderImageURL));
 
   const handleHeartClick = (clickedActivityId) => {
     const newLiked = !liked;
@@ -36,16 +38,16 @@ const ActivityCard = ({ activity }) => {
   };
 
   return (
-    <Card key={activity._id} className={classes.activityCard}>
+    <Card key={activity.activity_id} className={classes.activityCard}>
       <CardActionArea>
         <CardMedia
           className={classes.activityMedia}
-          image={placeholderImageURL}
+          image={image}
           title="Click to find out more about your next adventure!"
         >
           <Box className={liked ? `${classes.relatedInfoHeart} ${classes.relatedInfoLiked}` : classes.relatedInfoHeart}>
             <FavoriteTwoToneIcon
-              onClick={() => { handleHeartClick(activity._id); }}
+              onClick={() => { handleHeartClick(activity.activity_id); }}
             />
           </Box>
         </CardMedia>
@@ -53,12 +55,12 @@ const ActivityCard = ({ activity }) => {
           <Box className={classes.relatedInfoReviewsBox}>
             <StarRateIcon style={{ color: 'red' }} />
             <Typography style={{ color: 'gray' }}>
-              {activity.reviews > 0 ? `${activity.reviews} reviews` : 'New'}
+              {activity.review_count > 0 ? `${activity.review_count} reviews` : 'New'}
             </Typography>
           </Box>
           <MouseOverPopover
             className={classes.relatedInfoCardDescription}
-            description={activity.description}
+            description={activity.activity_description}
           />
           <Box className={classes.relatedInfoPriceBox}>
             <Typography className={classes.relatedInfoPrice}>{`From $${activity.price}`}</Typography>
