@@ -2,4 +2,9 @@ node_modules
 dist
 config.js
 .env
-database/sampleData
+database/sampleData/activities.csv
+database/sampleData/activityImages.csv
+database/sampleData/cities.csv
+database/sampleData/houseImages.csv
+database/sampleData/houses.csv
+database/sampleData/reservationType.csv
