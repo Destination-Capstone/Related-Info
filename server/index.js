@@ -22,15 +22,14 @@ app.use(cors());
 ////////////////////////////////////////
 
 app.get('/cities', (req, res) => {
-  console.log('GET request');
   City.find(req, res);
 });
 
 ////////////////////////////////////////
 
-app.get('/homes/:homeId', (req, res) => {
-  const { homeId } = req.params;
-  Home.find(homeId, req, res);
+app.get('/homes/:cityId', (req, res) => {
+  const { cityId } = req.params;
+  Home.find(cityId, req, res);
 });
 
 ////////////////////////////////////////

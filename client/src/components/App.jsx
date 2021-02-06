@@ -21,15 +21,17 @@ const axios = require('axios');
 const useStyles = makeStyles(styles);
 
 const App = () => {
-  const [city, setCity] = useState('');
+  const [city, setCity] = useState(1);
   const [homeInfo, setHomeInfo] = useState([]);
   const [activityInfo, setActivityInfo] = useState([]);
   const [cities, setCities] = useState([]);
+  const [activityPage, setActivityPage] = useState(0);
+  const [homesPage, setHomesPage] = useState(0);
   const classes = useStyles();
   const { id } = useParams();
 
   const getActivityData = () => {
-    axios.get(`http://localhost:3000/activities/${city}`)
+    axios.get(`http://localhost:3000/activities/${city}?page=${activityPage}`)
       .then((response) => setActivityInfo(response.data))
       .catch((err) => console.log(err));
   };
@@ -42,7 +44,7 @@ const App = () => {
 
   const getHomeData = () => {
     city
-    && axios.get(`http://localhost:3000/homes/${city}`)
+    && axios.get(`http://localhost:3000/homes/${city}?page=${homesPage}`)
       .then((response) => setHomeInfo(response.data))
       .then(() => getActivityData())
       .then(() => getCities())
@@ -50,7 +52,6 @@ const App = () => {
   };
 
   useEffect(() => {
-    console.log(id);
     setCity(id);
     getHomeData();
   }, [id, city]);

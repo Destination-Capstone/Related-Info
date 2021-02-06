@@ -36,7 +36,7 @@ const styles = () => (
     },
     cityList: {
       display: 'flex',
-      flexDirection: 'row',
+      flexDirection: 'column',
       justifyContent: 'space-around',
       paddingBottom: 100,
     },

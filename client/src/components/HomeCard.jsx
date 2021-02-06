@@ -37,7 +37,7 @@ const HomeCard = ({ home, handleHomeCardClick }) => {
   };
 
   return (
-    <Card key={home._id} className={classes.relatedInfoCard}>
+    <Card key={home.home_id} className={classes.relatedInfoCard}>
       <CardActionArea>
         <CardMedia
           className={classes.relatedInfoMedia}
@@ -47,7 +47,7 @@ const HomeCard = ({ home, handleHomeCardClick }) => {
           {home.superhost ? <Box className={classes.relatedInfoSuperhost}> SUPERHOST </Box> : '' }
           <Box className={liked ? `${classes.relatedInfoHeart} ${classes.relatedInfoLiked}` : classes.relatedInfoHeart}>
             <FavoriteTwoToneIcon
-              onClick={() => { handleHeartClick(home._id); }}
+              onClick={() => { handleHeartClick(home.home_id); }}
             />
           </Box>
         </CardMedia>
@@ -58,11 +58,11 @@ const HomeCard = ({ home, handleHomeCardClick }) => {
           <Box className={classes.relatedInfoReviewsBox}>
             <StarRateIcon style={{ color: 'red' }} />
             <Typography style={{ color: 'gray' }}>
-              {home.reviews > 0 ? `${home.reviews} reviews` : 'New'}
+              {home.review_count > 0 ? `${home.review_count} reviews` : 'New'}
             </Typography>
           </Box>
           <Box className={classes.typeNumBedsBox}>
-            <Typography>{home.type}</Typography>
+            <Typography>{home.reservation_type}</Typography>
             <Typography className={classes.relatedInfoBullet}> • </Typography>
             <Typography>
               {`${home.beds} beds`}
@@ -70,7 +70,7 @@ const HomeCard = ({ home, handleHomeCardClick }) => {
           </Box>
           <MouseOverPopover
             className={classes.relatedInfoCardDescription}
-            description={home.description}
+            description={home.home_description}
           />
           <Box className={classes.relatedInfoPriceBox}>
             <Typography className={classes.relatedInfoPrice}>{`$${home.price}`}</Typography>
