@@ -1,33 +1,62 @@
+/* eslint-disable no-underscore-dangle */
 const { pool } = require('./index.js');
 
+const query = (text, req, res) => {
+  pool.connect();
+  return (
+    pool
+      .query(text)
+      .then((data) => res.send(data.rows))
+      .catch((e) => res.send(e.stack))
+      .finally(() => pool.end())
+  );
+};
+
 module.exports.City = {
-  find: () => {
-    const text = 'SELECT * FROM cities;';
-    return (
-      pool.query(text)
-        .then((res) => res.rows)
-        .catch((e) => e.stack)
-        .finally(() => pool.end())
-    );
+  find: (req, res) => {
+    const text = 'SELECT * FROM city;';
+    query(text, req, res);
   },
 };
 
 module.exports.Home = {
-  find: (city) => {
-    const text = `SELECT * FROM homes WHERE `;
-    return (
-      pool.query(text)
-        .then((res) => res.rows)
-        .catch((e) => e.stack)
-        .finally(() => pool.end())
-    );
+  find: (homeId, req, res) => {
+    const text = `
+      SELECT * FROM home
+        WHERE city_id = (
+          SELECT (city_id) FROM home
+            WHERE home_id = ${homeId}
+        )
+      `;
+    query(text, req, res);
   },
-  updateOne: (id, liked) => {
-    const text = `UPDATE homes`
+  updateOne: (id, liked, req, res) => {
+    const text = `
+      UPDATE home
+      SET liked = ${liked.liked}
+      WHERE home_id = ${id._id}
+    `;
+    query(text, req, res);
   },
 };
 
 module.exports.Activity = {
-  find: (city) => {},
-  updateOne: (id, liked) => {},
+  find: (city, req, res) => {
+    const text = `
+      SELECT * FROM activity
+        WHERE city_id = (
+          SELECT (city_id) FROM activity
+            WHERE activity_id = ${city.city}
+        )
+      `;
+    query(text, req, res);
+  },
+  updateOne: (id, liked, req, res) => {
+    const text = `
+      UPDATE activity
+      SET liked = ${liked.liked}
+      WHERE activity_id = ${id._id}
+    `;
+    query(text, req, res);
+  },
 };

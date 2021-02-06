@@ -1,6 +1,12 @@
-const { Pool, Client } = require('pg');
+const { Pool } = require('pg');
 
-const pool = new Pool();
-const client = new Client();
+const connectionParams = {
+  host: 'localhost',
+  user: 'collin',
+  database: 'aircmc',
+};
 
-module.exports = { pool, client };
+const pool = new Pool(connectionParams);
+pool.connect();
+
+module.exports = { pool };

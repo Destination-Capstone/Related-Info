@@ -28,22 +28,6 @@ const App = () => {
   const classes = useStyles();
   const { id } = useParams();
 
-  const propertyLocations = {
-    'Hollywood, CA': [1, 3, 6, 7, 18],
-    'Austin, TX': [12, 13, 15, 17, 19],
-    'Oakland, CA': [4, 11, 14, 16, 20],
-    'Seattle, WA': [2, 5, 8, 9, 10],
-  };
-
-  const findCityName = (paramsId) => {
-    for (const key in propertyLocations) {
-      const isPresent = propertyLocations[key].indexOf(parseInt(paramsId)) >= 0;
-      if (isPresent) {
-        return key;
-      }
-    }
-  };
-
   const getActivityData = () => {
     axios.get(`http://localhost:3000/activities/${city}`)
       .then((response) => setActivityInfo(response.data))
@@ -66,7 +50,8 @@ const App = () => {
   };
 
   useEffect(() => {
-    setCity(findCityName(id));
+    console.log(id);
+    setCity(id);
     getHomeData();
   }, [id, city]);
 
