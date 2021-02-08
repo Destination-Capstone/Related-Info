@@ -12,7 +12,7 @@ writeActivityImages.write('activity_image_id,activity_id,url_string');
 const seedActivityImages = async (writer, encoding, callback) => {
   for (let i = 1; i < 60000000; i++) {
     const randomCity = random(1, 25);
-    const randomActivity = random(1, 10000000);
+    const randomActivity = random(1, 9999999);
     const data = `\n${i},${randomActivity},https://loremflickr.com/320/240/${randomCity}`;
     if (i !== 59999999) {
       if (!writeActivityImages.write(data, encoding)) {
