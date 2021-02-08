@@ -5,7 +5,7 @@
   "scripts": {
     "react-dev": "webpack --mode development -w",
     "watch": "webpack --mode production",
-    "seed": "node database/seed.js",
+    "seed": "bash database/populateDatabase.sh",
     "start": "nodemon server/index.js",
     "test": "jest"
   },
