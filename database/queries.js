@@ -31,10 +31,7 @@ module.exports.Home = {
           ON c.city_id = h.city_id
         INNER JOIN reservation_type r
           ON r.reservation_type_id = h.reservation_type_id
-        WHERE c.city_id = (
-          SELECT (city_id) FROM city
-            WHERE city_id = ${cityId}
-        )
+        WHERE c.city_id = ${cityId}
         ORDER BY home_id ASC
         OFFSET ${offset}
         FETCH FIRST 15 ROWS ONLY;
@@ -42,7 +39,6 @@ module.exports.Home = {
     query(text, req, res);
   },
   updateOne: (id, liked, req, res) => {
-    console.log(id);
     const text = `
       UPDATE home
       SET liked = ${liked.liked}
