@@ -8,8 +8,8 @@ if (process.env.NODE_ENV !== 'production') {
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
-
 const { City, Home, Activity } = require('../database/queries.js');
+require('newrelic');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
