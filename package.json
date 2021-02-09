@@ -28,6 +28,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest-transform-stub": "^2.0.0",
     "json2mq": "^0.2.0",
+    "k6": "0.0.0",
     "lodash.debounce": "^4.0.8",
     "mongoose": "^5.11.11",
     "msw": "^0.25.0",
