@@ -52,6 +52,7 @@ const App = () => {
   };
 
   useEffect(() => {
+    console.log(id);
     setCity(id);
     getHomeData();
   }, [id, city]);

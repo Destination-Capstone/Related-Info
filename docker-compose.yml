@@ -1,0 +1,36 @@
+version: "2"
+
+services:
+  related:
+    image: collinnewman/sdc_relatedinfo
+    environment:
+      CONSTR: postgresql://collin@db:5432/aircmc
+      #HOST: db
+      #USER: collin
+      #DB: aircmc
+    ports:
+      - 3000:3000
+    depends_on:
+      db:
+        condition: service_healthy
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: collin
+      POSTGRES_HOST_AUTH_METHOD: trust
+      POSTGRES_DB: aircmc
+    healthcheck:
+      test: /usr/bin/pg_isready
+      interval: 5s
+      timeout: 10s
+      retries: 120
+    ports:
+      - 5432:5432
+    volumes:
+      - type: volume
+        source: dbdata
+        target: /var/postgresql/data
+
+volumes:
+  dbdata:
