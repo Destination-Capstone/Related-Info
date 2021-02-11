@@ -8,3 +8,6 @@ database/sampleData/cities.csv
 database/sampleData/houseImages.csv
 database/sampleData/houses.csv
 database/sampleData/reservationType.csv
+newrelic.js
+.eslintignore
+newrelic_agent.log

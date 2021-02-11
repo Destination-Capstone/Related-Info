@@ -3,6 +3,11 @@ CREATE TABLE IF NOT EXISTS city (
   city_name varchar(30) NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS reservation_type (
+  reservation_type_id smallserial PRIMARY KEY,
+  reservation_type varchar(50) UNIQUE NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS home (
   home_id serial PRIMARY KEY,
   city_id integer,
@@ -23,10 +28,6 @@ CREATE TABLE IF NOT EXISTS home (
       ON DELETE SET NULL
 );
 
-CREATE TABLE IF NOT EXISTS reservation_type (
-  reservation_type_id smallserial PRIMARY KEY,
-  reservation_type varchar(50) UNIQUE NOT NULL
-);
 
 CREATE TABLE IF NOT EXISTS house_image (
   house_image_id serial PRIMARY KEY,
@@ -35,16 +36,6 @@ CREATE TABLE IF NOT EXISTS house_image (
   CONSTRAINT fk_home
     FOREIGN KEY(home_id)
       REFERENCES home(home_id)
-      ON DELETE CASCADE
-);
-
-CREATE TABLE IF NOT EXISTS activity_image (
-  activity_image_id serial PRIMARY KEY,
-  activity_id integer,
-  url_string varchar(255) NOT NULL,
-  CONSTRAINT fk_activity
-    FOREIGN KEY(activity_id)
-      REFERENCES activity(activity_id)
       ON DELETE CASCADE
 );
 
@@ -58,5 +49,15 @@ CREATE TABLE IF NOT EXISTS activity (
   CONSTRAINT fk_city
     FOREIGN KEY(city_id)
       REFERENCES city(city_id)
+      ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS activity_image (
+  activity_image_id serial PRIMARY KEY,
+  activity_id integer,
+  url_string varchar(255) NOT NULL,
+  CONSTRAINT fk_activity
+    FOREIGN KEY(activity_id)
+      REFERENCES activity(activity_id)
       ON DELETE CASCADE
 );
