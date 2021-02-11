@@ -7,7 +7,8 @@
     "watch": "webpack --mode production",
     "seed": "bash database/populateDatabase.sh",
     "start": "nodemon server/index.js",
-    "test": "jest"
+    "test": "jest",
+    "start_k6_test": "cservice server/index.js --accessKey lksjdf982734"
   },
   "author": "Ganzfriend",
   "license": "ISC",
@@ -19,6 +20,7 @@
     "axios": "^0.21.1",
     "babel-loader": "^8.2.2",
     "classnames": "^2.2.6",
+    "cluster-service": "^2.1.4",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "enquire.js": "^2.1.6",
