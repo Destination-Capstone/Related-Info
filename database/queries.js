@@ -8,7 +8,6 @@ const query = (text, req, res) => (
     .query(text)
     .then((data) => res.send(data.rows))
     .catch((e) => res.send(e))
-    .finally(() => console.log('Finished request'))
 );
 
 module.exports.City = {
@@ -37,7 +36,6 @@ module.exports.Home = {
         OFFSET ${offset}
         FETCH FIRST 15 ROWS ONLY;
       `;
-      console.log(cityId, offset);
     query(text, req, res);
   },
   updateOne: (id, liked, req, res) => {
